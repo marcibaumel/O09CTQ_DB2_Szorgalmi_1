@@ -150,7 +150,7 @@ public class DbMethods {
 
     public int UniqueId(){
 
-        int id=1;
+        int id=2;
 
         String sqlp="select * from Panasz";
         try{
