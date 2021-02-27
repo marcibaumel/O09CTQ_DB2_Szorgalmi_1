@@ -14,9 +14,9 @@ public class DbMethods {
     public void Connect() {
         try {
 
-            //String url= new File("src/panasz.db").getAbsolutePath();
+            String url= new File("src/panasz.db").getAbsolutePath();
 
-            String url= "D:/Program Files (x86)/SQLite/panasz.db";
+            //String url= "D:/Program Files (x86)/SQLite/panasz.db";
             conn = DriverManager.getConnection("jdbc:sqlite:"+url);
             SM("Connection EMP OK!");
             SM("=====================================\n");
@@ -40,7 +40,8 @@ public class DbMethods {
     public void ReadAllDataFromTermek(){
         String nev="";
         int id=0;
-        System.out.println("Termék List:");
+        System.out.println("\nTermék List:");
+        SM("\nTermékID  Termék Neve\n\n");
 
         String sqlp="select TermekID, TermekNev from Termek";
 

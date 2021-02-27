@@ -10,17 +10,11 @@ public class Main {
     static ConsoleMethods cm= new ConsoleMethods();
 
     public static void main(String[] args) {
-
         dbm.Reg();
         dbm.Connect();
-
-
         while(1!=0){
             menu();
-
         }
-
-
     }
 
     static void menu(){
@@ -117,8 +111,6 @@ public class Main {
         System.out.println(msg);
 
     }
-
-
 
 
 }
