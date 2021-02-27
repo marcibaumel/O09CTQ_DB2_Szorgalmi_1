@@ -89,6 +89,37 @@ public class DbMethods {
         }
     }
 
+    public void ReadAllDataFromPanaszWhereTermekID(int KeresettID){
+
+        String PanaszNev="", PanaszLeiras="", Datum="", Email="";
+        int PanaszID=0, IDTermek=0;
+        SM("=====================================\n");
+        System.out.println("Panasz List: \n");
+
+        String sqlp="select PanaszID, IDTermek, Email, PanaszCim, PanaszLeiras, Datum from Panasz WHERE IDTermek="+KeresettID+";";
+
+        try{
+            s=conn.createStatement();
+            rs=s.executeQuery(sqlp);
+            while(rs.next()){
+                PanaszID=rs.getInt("PanaszID");
+                IDTermek=rs.getInt("IDTermek");
+                Email=rs.getString("Email");
+                PanaszNev=rs.getString("PanaszCim");
+                PanaszLeiras=rs.getString("PanaszLeiras");
+                Datum= rs.getString("Datum");
+
+                SM("ID:"+PanaszID +"\nTermek Azonosító: "+IDTermek+"\nBejelentő Email Címe: "+Email +"\nPanasz Név: "
+                        +PanaszNev+"\nPanasz Leírás: "+PanaszLeiras +"\nRögzítés Dátuma: "+Datum+" ");
+
+                SM("=====================================\n");
+            }
+        }catch (SQLException e){
+            SM(e.getMessage());
+        }
+    }
+
+
     public void InsertNewPanasz(int PanaszID, int IDTermek, String Email, String PanaszCim, String PanaszLeiras, String Datum){
         String sqlp="insert into Panasz values (" +PanaszID+", '"+ IDTermek+"', '"+Email+"', '"+PanaszCim+"', '"+ PanaszLeiras+"', '"+ Datum +"')";
         try{
@@ -114,23 +145,29 @@ public class DbMethods {
     }
 
     public int UniqueId(){
-        int id=0;
 
-        String sqlp="select count(*) from Panasz";
+        int id=1;
+
+        String sqlp="select * from Panasz";
         try{
+
             s=conn.createStatement();
             rs=s.executeQuery(sqlp);
             while(rs.next()){
-                //return rs.getInt(1);
+
                 id++;
+
             }
+            SM(""+id);
+            return id;
 
         }catch (SQLException e){
             SM(e.getMessage());
+            return id;
         }
-        id++;
-        SM(""+id);
-        return id;
+
+
+        //return id;
     }
 
     public void SM(String msg)

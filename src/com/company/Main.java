@@ -6,12 +6,19 @@ import java.util.Properties;
 
 public class Main {
 
+
+
     static DbMethods dbm= new DbMethods();
     static ConsoleMethods cm= new ConsoleMethods();
 
     public static void main(String[] args) {
+
+
         dbm.Reg();
         dbm.Connect();
+
+        dbm.UniqueId();
+
         while(1!=0){
             menu();
         }
@@ -30,10 +37,12 @@ public class Main {
 
         dbm.SM("3. Korábbi Panaszok Listázása \n");
 
+        dbm.SM("4. Korábbi Panaszok Listázása Játék Szerint\n");
+
         String ms= cm.ReadData("Add meg a meg melyik funkciót akarod használni");
         int m= -1;
 
-        if(test(ms))m = StringToInt(ms);
+        if(test(ms, 0, 5))m = StringToInt(ms);
         switch(m){
             case 0:
                 dbm.DisConnect();
@@ -48,6 +57,23 @@ public class Main {
                 break;
             case 3:
                 KorabbiPanasz();
+                break;
+            case 4:
+                KorabbiPanaszJatekSzerint();
+
+        }
+
+    }
+
+    static void KorabbiPanaszJatekSzerint(){
+        String IDTermek = cm.ReadData("Add meg a termék kódját: ");
+
+        if(test(IDTermek,1, 11)){
+            int Termek=StringToInt(IDTermek);
+            dbm.ReadAllDataFromPanaszWhereTermekID(Termek);
+        }
+        else{
+            //SM("Ilyen adat nincs a listában");
         }
 
     }
@@ -75,7 +101,7 @@ public class Main {
         dbm.InsertNewPanasz(PanaszID, Termek, Email, PanaszCim, PanaszLeiras, Datum );
     }
 
-    static boolean test(String s){
+    static boolean test(String s, int min, int max){
         if(s.length() == 0){
             dbm.SM("Próbáld újra");
             return  false;
@@ -84,7 +110,30 @@ public class Main {
             try{
 
                 int x= Integer.valueOf(s);
-                if(x>=0 && x<4) return true;
+                if(x>=min && x<max) return true;
+                else{
+                    dbm.SM("Nem megfelelő adat");
+                    return false;
+                }
+
+            }catch (NumberFormatException nfe)
+            {
+                dbm.SM("Ez se jó");
+                return false;
+            }
+        }
+    }
+
+    static boolean testID(String s){
+        if(s.length() == 0){
+            dbm.SM("Próbáld újra");
+            return  false;
+        }
+        else{
+            try{
+
+                int x= Integer.valueOf(s);
+                if(x>=1 && x<11) return true;
                 else{
                     dbm.SM("Valami nem jó :(");
                     return false;
