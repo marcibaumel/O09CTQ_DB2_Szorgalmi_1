@@ -1,6 +1,6 @@
 # Projekt Leírás:
 
-Az én szorgalmi projektemben egy olyan alkalmazás vázat próbáltam megvalósítani amivel a játékokban fellelhető hibákat lehet követni mint termék - panasz nyilvántartás. Ezzel a rendszerrel lehetne a felhasználókat mint tesztereket alkalmazni és a véleményeik által sikerülne javítani az észre nem vett hibákat.   
+Az én szorgalmi projektemben egy olyan alkalmazás vázat próbáltam megvalósítani amivel a játékokban fellelhető hibákat lehet követni mint termék - panasz nyilvántartás. Ezzel a rendszerrel lehetne a felhasználóktól érkező megjegyzéseket tárolni és nyomon követni a hibákat. 
 
 # Relációs Séma:
 
