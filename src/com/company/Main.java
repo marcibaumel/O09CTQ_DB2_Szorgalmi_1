@@ -1,6 +1,9 @@
 package com.company;
 
 import com.sun.jdi.connect.Transport;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
 
@@ -16,7 +19,7 @@ public class Main {
 
         dbm.Reg();
         dbm.Connect();
-
+        //dbm.deletById(8);
         dbm.UniqueId();
 
         while(1!=0){
@@ -29,7 +32,7 @@ public class Main {
         SM("\nMenü\n");
 
         dbm.SM("=====================================\n\n");
-        dbm.SM("0.Kilépés \n");
+        dbm.SM("0. Kilépés \n");
 
         dbm.SM("1. Katalógus \n");
 
@@ -65,6 +68,21 @@ public class Main {
 
     }
 
+    static boolean isValidFormat(String format, String value) {
+        Date date = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(format);
+            date = sdf.parse(value);
+            if (!value.equals(sdf.format(date))) {
+                date = null;
+            }
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+        return date != null;
+    }
+
+
     static void KorabbiPanaszJatekSzerint(){
         String IDTermek = cm.ReadData("Add meg a termék kódját: ");
 
@@ -90,7 +108,7 @@ public class Main {
 
     static void Panasz(){
         int PanaszID=dbm.UniqueId();
-        String IDTermek = cm.ReadData("Add meg a termék kódját: ");
+        String IDTermek = cm.ReadData("Add meg a termék kódját: (1-10)");
         String Email=cm.ReadData("Add meg az email címed: ");
         String PanaszCim=cm.ReadData("Adj címet a panaszra: ");
         String PanaszLeiras = cm.ReadData("Írd le pontosan a problémát: ");
@@ -98,7 +116,14 @@ public class Main {
 
         int Termek=StringToInt(IDTermek);
 
-        dbm.InsertNewPanasz(PanaszID, Termek, Email, PanaszCim, PanaszLeiras, Datum );
+        if(isValidFormat("yyyy.MM.dd.", Datum)){
+            dbm.InsertNewPanasz(PanaszID, Termek, Email, PanaszCim, PanaszLeiras, Datum );
+        }
+        else{
+            Panasz();
+
+        }
+
     }
 
     static boolean test(String s, int min, int max){

@@ -2,6 +2,9 @@ package com.company;
 
 import java.io.File;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DbMethods {
 
@@ -120,6 +123,7 @@ public class DbMethods {
     }
 
 
+
     public void InsertNewPanasz(int PanaszID, int IDTermek, String Email, String PanaszCim, String PanaszLeiras, String Datum){
         String sqlp="insert into Panasz values (" +PanaszID+", '"+ IDTermek+"', '"+Email+"', '"+PanaszCim+"', '"+ PanaszLeiras+"', '"+ Datum +"')";
         try{
@@ -164,6 +168,9 @@ public class DbMethods {
         }catch (SQLException e){
             SM(e.getMessage());
             return id;
+        }catch (NullPointerException ne){
+            SM(ne.getMessage());
+            return  id;
         }
 
 
@@ -174,6 +181,18 @@ public class DbMethods {
     {
         System.out.println(msg);
 
+    }
+
+    public void deletById(int id){
+        String sqlp="DELETE FROM Panasz WHERE (PanaszID="+id+");";
+        try{
+            s=conn.createStatement();
+            s.execute(sqlp);
+            SM("Delete OK!");
+
+        }catch(SQLException e){
+            SM("JDB delete: "+ e.getMessage());
+        }
     }
 
 
