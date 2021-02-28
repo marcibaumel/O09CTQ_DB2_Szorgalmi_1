@@ -12,7 +12,7 @@ Az alkalmazás jelen pillanatban konzolról indítva működik ahol egy kezdetle
 
 ![alt text](https://github.com/marcibaumel/O09CTQ_DB2_Szorgalmi_1/blob/master/menu.PNG)
 
-Első lépésben ellenőrizzük a JDBC driver-t és csatlakozunk a SQLite adatbázisohoz.
+Első lépésben ellenőrizzük a JDBC driver-t és csatlakozunk a SQLite adatbázishoz.
 
 ![alt text](https://github.com/marcibaumel/O09CTQ_DB2_Szorgalmi_1/blob/master/connect.PNG)
 
