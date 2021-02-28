@@ -22,6 +22,7 @@ public class DbMethods {
             //String url= "D:/Program Files (x86)/SQLite/panasz.db";
             conn = DriverManager.getConnection("jdbc:sqlite:"+url);
             SM("Connection OK!");
+
             SM("=====================================\n");
 
         } catch (SQLException e) {
