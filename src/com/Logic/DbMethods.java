@@ -1,10 +1,7 @@
-package com.company;
+package com.Logic;
 
 import java.io.File;
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class DbMethods {
 

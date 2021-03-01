@@ -1,13 +1,10 @@
-package com.company;
-
-import com.sun.jdi.connect.Transport;
+package com.Logic;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Properties;
 
-public class Main {
+public class MainLogic {
 
 
 
