@@ -11,6 +11,7 @@ public class MainLogic {
     static DbMethods dbm= new DbMethods();
     static ConsoleMethods cm= new ConsoleMethods();
 
+
     public static void main(String[] args) {
 
 
@@ -23,6 +24,7 @@ public class MainLogic {
             menu();
         }
     }
+
 
     static void menu(){
 
